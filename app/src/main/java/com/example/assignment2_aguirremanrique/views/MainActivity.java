@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     @Override
     public void onMovieClick(String imdbID) {
         // Handle the click event and navigate to movie details
-        Intent intent = new Intent(MainActivity.this, MovieDetailActivity.class);  // Fix: Change to MovieDetailActivity
+        Intent intent = new Intent(this, MovieDetailActivity.class);  // Fix: Change to MovieDetailActivity
         intent.putExtra("IMDB_ID", imdbID);  // Pass imdbID to the next activity
         startActivity(intent);
     }

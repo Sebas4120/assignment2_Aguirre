@@ -24,16 +24,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     //....xxxx
     ItemClickListener itemClickListener;
 
-    public MyAdapter(List<MoviesModel> movies, Context context) {
+    public MyAdapter(List<MoviesModel> movies, Context context, ItemClickListener itemClickListener) {
          this.movies = movies;
         this.context = context;
+        this.itemClickListener = itemClickListener;
         //this.movies = movies != null ? movies : new ArrayList<>();
     }
 
     //......xxxxxxxxxxxxxx
-   public void setClickListener (ItemClickListener itemClickListener){
-        this.itemClickListener=itemClickListener;
-    }
+//   public void setClickListener (ItemClickListener itemClickListener){
+//        this.itemClickListener=itemClickListener;
+//    }
 
 
 
@@ -42,10 +43,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,parent,false);
-        MyViewHolder myViewHolder = new MyViewHolder(itemView);
+        //MyViewHolder myViewHolder = new MyViewHolder(itemView);
 //        MyViewHolder myViewHolder = new MyViewHolder(itemView, this.itemClickListener);
 
-        return myViewHolder;
+        //return myViewHolder;
+        return new MyViewHolder(itemView, itemClickListener);
     }
 
     //This method bind the data to the view
@@ -65,15 +67,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         //.......xxxx
         // Guardar el objeto en la vista para que MyViewHolder lo pueda recuperar
         holder.itemView.setTag(movie);
-
-
-        // Handle click listener for the movie item....xxxxx
-        holder.itemView.setOnClickListener(v -> {
-            if (itemClickListener != null) {
-                Log.d("DEBUG", "Movie at position " + position + ": " + movie.getTitle() + " - IMDb ID: " + movie.getImdbID());
-                itemClickListener.onMovieClick(movie.getImdbID());  // Pass the clicked movie to the listener
-            }
-        });
 
     }
 
