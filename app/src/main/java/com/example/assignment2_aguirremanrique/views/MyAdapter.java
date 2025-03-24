@@ -2,6 +2,7 @@ package com.example.assignment2_aguirremanrique.views;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,9 +61,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 .load(movie.getPosterUrl())  // URL from the MoviesModel
                 .into(holder.MoviePoster);  // Set the image into the ImageView
 
-        //.......xxxx
-        // Guardar el objeto en la vista para que MyViewHolder lo pueda recuperar
-        //holder.itemView.setTag(movie);
+
+
+        // Set the click listener
+        holder.itemView.setOnClickListener(v -> {
+            if (itemClickListener != null) {
+                itemClickListener.onMovieClick(movie.getImdbID());
+            }
+        });
+
 
 
 

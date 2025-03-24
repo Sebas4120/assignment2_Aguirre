@@ -33,12 +33,17 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         //....xxxx
         this.itemClickListener = itemClickListener;
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("Hi", "onViewHolder Click");
-
-
+        itemView.setOnClickListener(v -> {
+            if (itemClickListener != null) {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    MoviesModel movie = (MoviesModel) v.getTag(); // Retrieve movie object
+                    if (movie != null) {
+                        itemClickListener.onMovieClick(movie.getImdbID()); // Pass IMDb ID as a string
+                    } else {
+                        Log.e("ERROR", "Movie object is null");
+                    }
+                }
             }
         });
 

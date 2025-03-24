@@ -83,7 +83,14 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     //Click listener for every cell: this method is the one that we want to call from our viewHolder
     @Override
     public void onMovieClick(String imdbID) {
+        // Create an Intent to navigate to MovieDetailActivity
+        Intent intent = new Intent(MainActivity.this, MovieDetailActivity.class);
 
+        // Pass the imdbID to the detail activity
+        intent.putExtra("IMDB_ID", imdbID);
+
+        // Start the detail activity
+        startActivity(intent);
     }
 
 
