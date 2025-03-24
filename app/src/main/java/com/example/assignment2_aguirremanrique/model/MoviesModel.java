@@ -2,7 +2,7 @@ package com.example.assignment2_aguirremanrique.model;
 
 public class MoviesModel {
 
-    private String Title, Year, imdbID;
+    private String Title, Year, imdbID, plot;
 
     private String PosterUrl;
 

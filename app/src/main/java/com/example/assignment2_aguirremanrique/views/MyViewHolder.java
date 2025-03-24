@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.assignment2_aguirremanrique.R;
 import com.example.assignment2_aguirremanrique.model.MoviesModel;
 
-public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class MyViewHolder extends RecyclerView.ViewHolder {
 
     TextView Title;
     TextView Year;
@@ -22,7 +22,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
     //....xxxx
     ItemClickListener itemClickListener;
 
-    public MyViewHolder(@NonNull View itemView) {
+    public MyViewHolder(@NonNull View itemView, ItemClickListener itemClickListener) {
         super(itemView);
 
         //This is the cell
@@ -33,35 +33,17 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
         //....xxxx
         this.itemClickListener = itemClickListener;
 
-//        itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d("tag", "onViewHolder Click");
-//
-//                //...xxxxxx
-//
-//
-//                // Get the movie object for the clicked position (itemView is already bound to a position)
-//                MoviesModel movie = (MoviesModel) itemView.getTag(); // Tag holds the MoviesModel
-//
-//                // Trigger the listener when clicked
-//                if (movie != null) {
-//                    // Pass the IMDb ID to the MovieDetailActivity to fetch more details
-//                    Intent intent = new Intent(itemView.getContext(), MovieDetailActivity.class);
-//                    intent.putExtra("IMDB_ID", movie.getImdbID());  // Pass IMDb ID to the next activity
-//                    itemView.getContext().startActivity(intent);
-//                }
-//            }
-//        });
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("tag", "onViewHolder Click");
+                itemClickListener.onMovieClick(getAdapterPosition());
 
-        itemView.setOnClickListener(this);
+            }
+        });
+
+
     }
 
-    @Override
-    public void onClick(View v) {
-        MoviesModel movie = (MoviesModel) itemView.getTag();
-        if (movie != null) {
-            itemClickListener.onMovieClick(movie.getImdbID());
-        }
-    }
+
 }

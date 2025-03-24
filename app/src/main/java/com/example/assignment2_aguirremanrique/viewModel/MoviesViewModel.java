@@ -97,8 +97,9 @@ public class MoviesViewModel extends ViewModel {
                         String title = movieObject.getString("Title");
                         String year = movieObject.getString("Year");
                         String posterUrl = movieObject.getString("Poster");
+                        String imdbID = movieObject.getString("imdbID");
 
-                        moviesList.add(new MoviesModel(title, year, posterUrl));
+                        moviesList.add(new MoviesModel(title, year, posterUrl, imdbID));
                     }
 
                     // Actualizar LiveData en el hilo principal
@@ -135,6 +136,7 @@ public class MoviesViewModel extends ViewModel {
                     return;
                 }
 
+                assert response.body() != null;
                 String responseData = response.body().string();
                 try {
                     JSONObject jsonObject = new JSONObject(responseData);

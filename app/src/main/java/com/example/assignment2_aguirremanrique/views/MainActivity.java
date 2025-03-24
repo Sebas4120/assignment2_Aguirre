@@ -48,8 +48,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         binding.recyclerViewMovies.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerViewMovies.setAdapter(myAdapter);
 
-        //..........xxxx
-        myAdapter.setClickListener(this);
+
 
 
         binding.searchBtn.setOnClickListener(new View.OnClickListener() {
@@ -76,16 +75,17 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         });
 
 
+        //..........xxxx: Clase del profe
+        myAdapter.setClickListener(this);
     }
 
     //Click listener for every cell: this method is the one that we want to call from our viewHolder
     @Override
-    public void onMovieClick(String imdbID) {
-        // Handle the click event and navigate to movie details
-        Intent intent = new Intent(this, MovieDetailActivity.class);  // Fix: Change to MovieDetailActivity
-        intent.putExtra("IMDB_ID", imdbID);  // Pass imdbID to the next activity
-        startActivity(intent);
+    public void onMovieClick(int pos) {
+
     }
+
+
 
 
 }
