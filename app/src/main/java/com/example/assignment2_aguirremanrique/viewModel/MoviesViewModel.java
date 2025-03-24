@@ -144,9 +144,12 @@ public class MoviesViewModel extends ViewModel {
                     String year = jsonObject.getString("Year");
                     String plot = jsonObject.getString("Plot");
                     String posterUrl = jsonObject.getString("Poster");
+                    String genre = jsonObject.getString("Genre");
+                    String runTime = jsonObject.getString("Runtime");
+                    String imdbID = jsonObject.getString("imdbRating");
 
                     // Create MovieDetailModel and update LiveData
-                    MovieDetailModel movieDetail = new MovieDetailModel(title, year, plot, posterUrl);
+                    MovieDetailModel movieDetail = new MovieDetailModel(title, year, plot, posterUrl, genre, runTime, imdbID);
                     movieDetailData.postValue(movieDetail);
 
                 } catch (JSONException e) {

@@ -15,7 +15,7 @@ import com.example.assignment2_aguirremanrique.viewModel.MoviesViewModel;
 public class MovieDetailActivity extends AppCompatActivity {
 
 
-    private TextView titleTextView, yearTextView, plotTextView;
+    private TextView titleTextView, yearTextView, plotTextView, genreTextView, runTimeTextView, scoreTextView;
     private ImageView posterImageView;
 
     @Override
@@ -30,6 +30,9 @@ public class MovieDetailActivity extends AppCompatActivity {
         yearTextView = findViewById(R.id.detail_year);
         plotTextView = findViewById(R.id.detail_plot);
         posterImageView = findViewById(R.id.detail_poster);
+        genreTextView = findViewById(R.id.detail_Genre);
+        runTimeTextView = findViewById(R.id.detail_Time);
+        scoreTextView = findViewById(R.id.detail_Score);
 
 
 
@@ -46,6 +49,9 @@ public class MovieDetailActivity extends AppCompatActivity {
                 titleTextView.setText(movieDetail.getTitle());
                 yearTextView.setText(movieDetail.getYear());
                 plotTextView.setText(movieDetail.getPlot());
+                genreTextView.setText(movieDetail.getGenre());
+                runTimeTextView.setText(movieDetail.getRuntime());
+                scoreTextView.setText(movieDetail.getImdbRating());
 
                 // Use Glide to load the poster image
                 Glide.with(this)
