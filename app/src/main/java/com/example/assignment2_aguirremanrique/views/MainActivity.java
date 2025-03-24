@@ -3,6 +3,7 @@ package com.example.assignment2_aguirremanrique.views;
 import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
 
     //Click listener for every cell: this method is the one that we want to call from our viewHolder
     @Override
-    public void onMovieClick(int pos) {
+    public void onMovieClick(String imdbID) {
 
     }
 

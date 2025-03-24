@@ -62,7 +62,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
         //.......xxxx
         // Guardar el objeto en la vista para que MyViewHolder lo pueda recuperar
-        holder.itemView.setTag(movie);
+        //holder.itemView.setTag(movie);
+
+
 
     }
 

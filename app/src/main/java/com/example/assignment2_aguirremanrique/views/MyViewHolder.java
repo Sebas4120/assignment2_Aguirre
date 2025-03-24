@@ -36,8 +36,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("tag", "onViewHolder Click");
-                itemClickListener.onMovieClick(getAdapterPosition());
+                Log.d("Hi", "onViewHolder Click");
+
 
             }
         });

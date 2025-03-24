@@ -1,5 +1,5 @@
 package com.example.assignment2_aguirremanrique.views;
 
 public interface ItemClickListener {
-    void onMovieClick(int pos);
+    void onMovieClick(String imdbID);
 }
