@@ -1,6 +1,8 @@
 package com.example.assignment2_aguirremanrique.views;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -62,5 +64,17 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         // Fetch movie details using imdbID
         moviesViewModel.getMovieDetails(imdbID);
+
+        // Find the button
+        Button btnBack = findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // This closes the current activity and returns to the previous one
+                finish();
+            }
+        });
+
     }
 }
