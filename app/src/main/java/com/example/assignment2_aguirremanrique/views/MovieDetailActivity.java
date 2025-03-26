@@ -11,32 +11,22 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.assignment2_aguirremanrique.R;
+import com.example.assignment2_aguirremanrique.databinding.ActivityMainBinding;
+import com.example.assignment2_aguirremanrique.databinding.ActivityMovieDetailBinding;
 import com.example.assignment2_aguirremanrique.model.MovieDetailModel;
 import com.example.assignment2_aguirremanrique.viewModel.MoviesViewModel;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
-
-    private TextView titleTextView, yearTextView, plotTextView, genreTextView, runTimeTextView, scoreTextView;
-    private ImageView posterImageView;
+    ActivityMovieDetailBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_movie_detail);
-
-        // Initialize the views
-        titleTextView = findViewById(R.id.detail_title);
-        yearTextView = findViewById(R.id.detail_year);
-        plotTextView = findViewById(R.id.detail_plot);
-        posterImageView = findViewById(R.id.detail_poster);
-        genreTextView = findViewById(R.id.detail_Genre);
-        runTimeTextView = findViewById(R.id.detail_Time);
-        scoreTextView = findViewById(R.id.detail_Score);
-
-
+        // Initialize View Binding
+        binding = ActivityMovieDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // Get the imdbID from the Intent
         String imdbID = getIntent().getStringExtra("IMDB_ID");
@@ -48,30 +38,28 @@ public class MovieDetailActivity extends AppCompatActivity {
         moviesViewModel.getMovieDetailData().observe(this, movieDetail -> {
             // Update the UI with the movie details
             if (movieDetail != null) {
-                titleTextView.setText(movieDetail.getTitle());
-                yearTextView.setText(movieDetail.getYear());
-                plotTextView.setText(movieDetail.getPlot());
-                genreTextView.setText(movieDetail.getGenre());
-                runTimeTextView.setText(movieDetail.getRuntime());
-                scoreTextView.setText(movieDetail.getImdbRating());
+                binding.detailTitle.setText(movieDetail.getTitle());
+                binding.detailYear.setText(movieDetail.getYear());
+                binding.detailPlot.setText(movieDetail.getPlot());
+                binding.detailGenre.setText(movieDetail.getGenre());
+                binding.detailTime.setText(movieDetail.getRuntime());
+                binding.detailScore.setText(movieDetail.getImdbRating());
 
                 // Use Glide to load the poster image
                 Glide.with(this)
                         .load(movieDetail.getPosterUrl())
-                        .into(posterImageView);
+                        //.into(posterImageView);
+                        .into(binding.detailPoster);
             }
         });
 
         // Fetch movie details using imdbID
         moviesViewModel.getMovieDetails(imdbID);
 
-        // Find the button
-        Button btnBack = findViewById(R.id.btnBack);
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // This closes the current activity and returns to the previous one
+                // Closes the activity and returns to the previous screen
                 finish();
             }
         });

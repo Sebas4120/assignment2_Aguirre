@@ -30,7 +30,7 @@ public class MoviesViewModel extends ViewModel {
     //Live data
     private final MutableLiveData <List<MoviesModel>> moviesData  = new MutableLiveData<>();
 
-    // LiveData for movie details...xxxx
+    // LiveData for movie details
     private final MutableLiveData<MovieDetailModel> movieDetailData = new MutableLiveData<>();
 
 
@@ -40,7 +40,7 @@ public class MoviesViewModel extends ViewModel {
     //Reference to our model
     MoviesModel moviesModel = new MoviesModel();
 
-    // Optional: Expose error messages as LiveData
+    // Expose error messages as LiveData
     public LiveData<String> getErrorData() {
         return errorData;
     }
@@ -52,21 +52,21 @@ public class MoviesViewModel extends ViewModel {
         return moviesData;
     }
 
-    // LiveData for movie detail.....xxxxxxxxxxx
+    // LiveData for movie detail
     public LiveData<MovieDetailModel> getMovieDetailData() {
         return movieDetailData;
     }
 
 
 
-    //This method is actually the one who get the data
+    //Fetches movies from the API based on a search query
     public void searchMovies(String query){
         String url = "https://www.omdbapi.com/?apikey=4c740af3&s=" + query + "&type=movie";
 
         ApiClient.get(url, new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                // Log error or update UI with a message
+                // Handle network failure
                 errorData.postValue("Error en la solicitud: " + e.getMessage());
                 Log.e("API_ERROR", "Error en la solicitud: " + e.getMessage());
             }
@@ -92,6 +92,7 @@ public class MoviesViewModel extends ViewModel {
                     JSONArray searchArray = jsonObject.getJSONArray("Search");
                     List<MoviesModel> moviesList = new ArrayList<>();
 
+                    // Iterate through JSON array and create movie models
                     for (int i = 0; i < searchArray.length(); i++) {
                         JSONObject movieObject = searchArray.getJSONObject(i);
                         String title = movieObject.getString("Title");
@@ -102,11 +103,11 @@ public class MoviesViewModel extends ViewModel {
                         moviesList.add(new MoviesModel(title, year, posterUrl, imdbID));
                     }
 
-                    // Actualizar LiveData en el hilo principal
+                    // Update LiveData with retrieved movie list
                     moviesData.postValue(moviesList);
 
                 } catch (JSONException e) {
-                    // Log error or notify the user of a parsing error
+                    // Handle JSON parsing error
                     errorData.postValue("Error:" + response.message());
 
                 }
@@ -118,13 +119,14 @@ public class MoviesViewModel extends ViewModel {
 
 
 
-    // Fetch movie details (e.g., plot) using imdbID
+    // Fetches details of a selected movie from the API
     public void getMovieDetails(String imdbID) {
         String url = "https://www.omdbapi.com/?apikey=4c740af3&i=" + imdbID;
 
         ApiClient.get(url, new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                // Handle network failure
                 errorData.postValue("Error en la solicitud: " + e.getMessage());
                 Log.e("API_ERROR", "Error en la solicitud: " + e.getMessage());
             }
@@ -153,7 +155,8 @@ public class MoviesViewModel extends ViewModel {
                     movieDetailData.postValue(movieDetail);
 
                 } catch (JSONException e) {
-                    errorData.postValue("Error en el parsing.");
+                    // Handle JSON parsing error
+                    errorData.postValue("Error parsing.");
                 }
             }
         });
