@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detail_poster">
 
-        <!-- Year -->
+
         <TextView
             android:id="@+id/detail_year"
             android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <!-- Duration -->
+
         <TextView
             android:id="@+id/detail_Time"
             android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <!-- Genre -->
+
         <TextView
             android:id="@+id/detail_Genre"
             android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <!-- Score -->
+
         <TextView
             android:id="@+id/detail_Score"
             android:layout_width="wrap_content"

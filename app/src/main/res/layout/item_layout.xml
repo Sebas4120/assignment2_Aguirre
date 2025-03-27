@@ -8,7 +8,7 @@
     android:layout_margin="10dp"
     android:background="@drawable/rounded_bg">
 
-    <!-- Movie Poster -->
+
     <ImageView
         android:id="@+id/moviePoster"
         android:layout_width="100dp"
@@ -22,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <!-- Movie Title -->
+
     <TextView
         android:id="@+id/title_txt"
         android:layout_width="0dp"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="@id/moviePoster"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Movie Year -->
+
     <TextView
         android:id="@+id/year_text"
         android:layout_width="wrap_content"
