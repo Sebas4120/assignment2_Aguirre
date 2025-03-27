@@ -67,8 +67,8 @@ public class MoviesViewModel extends ViewModel {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 // Handle network failure
-                errorData.postValue("Error en la solicitud: " + e.getMessage());
-                Log.e("API_ERROR", "Error en la solicitud: " + e.getMessage());
+                errorData.postValue("Error in the request: " + e.getMessage());
+                Log.e("API_ERROR", "Error in the request: " + e.getMessage());
             }
 
             @Override
@@ -85,7 +85,7 @@ public class MoviesViewModel extends ViewModel {
                 try {
                     JSONObject jsonObject = new JSONObject(responseData);
                     if (!jsonObject.has("Search")) {
-                        errorData.postValue("No se encontraron películas.");
+                        errorData.postValue("No movies found.");
                         return;
                     }
 
@@ -127,8 +127,8 @@ public class MoviesViewModel extends ViewModel {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 // Handle network failure
-                errorData.postValue("Error en la solicitud: " + e.getMessage());
-                Log.e("API_ERROR", "Error en la solicitud: " + e.getMessage());
+                errorData.postValue("Error in the request: " + e.getMessage());
+                Log.e("API_ERROR", "Error in the request: " + e.getMessage());
             }
 
             @Override

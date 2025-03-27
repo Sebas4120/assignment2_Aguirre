@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
                     viewModel.searchMovies(query);
                 } else {
                     // Show a message if the search query is empty
-                    Toast.makeText(MainActivity.this, "Please enter a search query", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Please enter a movie", Toast.LENGTH_SHORT).show();
                 }
 
             }
